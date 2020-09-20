@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 const val gameLocation = "file:///android_asset/www/index.html"
 
-const val javaScript = "(function(){events.push(JSON.stringify({res:\"dialog\",name:\""
+const val javaScript = "(function(){events.push(JSON.stringify({res:\"NATIVE_dialog\",name:\""
 const val javaScriptTrue = "\",data:true}));})();"
 const val javaScriptFalse = "\",data:false}));})();"
 const val javaScriptMid = "\",data:\""
