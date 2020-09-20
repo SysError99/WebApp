@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 
 const val gameLocation = "file:///android_asset/www/index.html"
 
-const val javaScript = "(function(){events.push(JSON.stringify({res:\"NATIVE_dialog\",name:\""
+const val javaScriptFunction = "(function(){events.push(JSON.stringify({res:\""
+const val javaScriptConfirm = "NATIVE_confirm"
+const val javaScriptPrompt = "NATIVE_prompt"
+const val javaScriptName = "\",name:\""
 const val javaScriptTrue = "\",data:true}));})();"
 const val javaScriptFalse = "\",data:false}));})();"
-const val javaScriptMid = "\",data:\""
-const val javaScriptBack = "\"}));})();"
+const val javaScriptData = "\",data:\""
+const val javaScriptDataClose = "\"}));})();"
 
 class MainActivity : AppCompatActivity() {
     public val activity: AppCompatActivity = this
@@ -79,14 +82,14 @@ class MainActivity : AppCompatActivity() {
                 setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
                     webView.post(Runnable {
                         run(){
-                            webView.evaluateJavascript(javaScript + name + javaScriptTrue, ValueCallback {  })
+                            webView.evaluateJavascript(javaScriptFunction + javaScriptConfirm + javaScriptName + name + javaScriptTrue, ValueCallback {  })
                         }
                     })
                 })
                 setNegativeButton("No", DialogInterface.OnClickListener { dialog, id ->
                     webView.post(Runnable {
                         run(){
-                            webView.evaluateJavascript(javaScript + name + javaScriptFalse, ValueCallback {  })
+                            webView.evaluateJavascript(javaScriptFunction + javaScriptConfirm + javaScriptName + name + javaScriptFalse, ValueCallback {  })
                         }
                     })
                 })
@@ -111,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 setPositiveButton("Submit", DialogInterface.OnClickListener { dialog, id ->
                     webView.post(Runnable {
                         run(){
-                            webView.evaluateJavascript(javaScript +name + javaScriptMid + input.text + javaScriptBack, ValueCallback {  })
+                            webView.evaluateJavascript(javaScriptFunction + javaScriptPrompt + javaScriptName + name + javaScriptData + input.text + javaScriptDataClose, ValueCallback {  })
                         }
                     })
                 })
