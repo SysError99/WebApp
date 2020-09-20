@@ -101,7 +101,10 @@ class MainActivity : AppCompatActivity() {
         var alertDialog: AlertDialog = activity.let {
             var builder = AlertDialog.Builder(it)
             var input: EditText = EditText(it)
-            input.setInputType(InputType.TYPE_CLASS_TEXT)
+            if(name.contains("password"))
+                input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            else
+                input.setInputType(InputType.TYPE_CLASS_TEXT)
             input.hint = str
             builder.setView(input)
             builder.apply {
