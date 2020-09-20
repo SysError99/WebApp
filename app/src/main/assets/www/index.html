@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebApp Example</title>
+</head>
+<body>
+<h1>WebApp Example</h1>
+<button id="btn_alert" onclick="appAlert()">Native Alert Dialog</button> <br>
+<button id="btn_confirm" onclick="appConfirm()">Native Confirm Dialog</button> <br>
+<button id="btn_prompt" onclick="appPrompt()">Native Prompt Dialog</button> <br>
+Data location: <input id="loc" type="text"> <br>
+<textarea id="text_area"></textarea><br>
+<button id="btn_load" onclick="loadData()">Load data</button> <br>
+<button id="btn_save" onclick="saveData()">Save data</button> <br>
+<div id="output"></div>
+<script>
+    const events = []
+    const output = document.getElementById('output')
+    function appPrompt(){
+        App.prompt(loc.value, 'Please enter your data name')
+    }
+    const loc = document.getElementById('loc')
+    const text = document.getElementById('text_area')
+    function loadData(){
+        text.value = App.loadData(loc.value)
+    }
+    function saveData(){
+        App.saveData(loc.value, text.value)
+    }
+    function appAlert(){
+        App.alert('Alert!')
+    }
+    function appConfirm(){
+        App.confirm('confirm','Do you want to confirm this?')
+    }
+    setInterval(function(){
+        if(events.length > 0){
+            let out = JSON.parse(events.shift())
+            output.innerHTML += 'res: ' + out.res + ', name: ' + out.name + ', data:' + out.data +'<br>'
+        }
+    },10)
+</script>
+</body>
+</html>
